@@ -1,0 +1,86 @@
+todo-list {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.tasks-wrapper {
+  box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  margin-top: 48px;
+}
+.done {
+  color: #ececec;
+  text-decoration: line-through;
+}
+form.newtask {
+  padding-bottom: 48px;
+  position: relative;
+}
+textarea.newtask {
+  background: unset;
+  border: unset;
+  border-bottom: 3px solid;
+  width: 100%;
+  padding: 6px 12px 6px 18px;
+  box-sizing: border-box;
+  resize: none;
+}
+textarea.newtask:focus {
+  outline: unset;
+}
+button {
+  padding: 6px 12px;
+  min-width: 100px;
+  font-size: 16px;
+  font-weight: bold;
+}
+button.newtask {
+  outline: unset;
+  border: unset;
+  float: right;
+  margin-top: 18px;
+  margin-left: 12px;
+}
+button.newtask.add {
+  background: black;
+  color: white;
+}
+button.newtask.add:disabled {
+  background: gray;
+}
+.task {
+  text-align: left;
+  min-height: 24px;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  padding: 6px 12px;
+  position: relative;
+}
+.task>input {
+  margin: 0;
+  position: absolute;
+  top: 13px;
+  left: 19px;
+}
+.task>span {
+  padding: 0px 12px 0px 42px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  line-height: 27px;
+}
+
+/*         Finished tasks        */
+
+span.secondary-heading {
+  font-size: 18px;
+  color: #bbb;
+  margin-top: 12px;
+  display: block;
+  margin-left: 54px;
+}
+.finished-tasks-wrapper {
+  border-top: 2px solid #e8e8e8;
+  text-align: left;
+}

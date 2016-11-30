@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="todofu">
+    <head>
+        <base href="/">
+        <title>Let's get djangular</title>
+
+        <link rel="stylesheet" href="{% static "css/app.css" %}">
+    </head>
+    <body>
+
+        <h1 class="test">ANIMATE ME!</h1>
+        <div ui-view></div>
+
+        <script src="{% static "js/angular.min.js" %}"></script>
+        <script src="{% static "js/angular-ui-router.min.js" %}"></script>
+        <script src="{% static "js/ct-ui-router-extras.min.js" %}"></script>
+        <script src="{% static "js/app.js" %}"></script>
+    </body>
+</html>

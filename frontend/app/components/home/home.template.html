@@ -1,0 +1,15 @@
+<div class="container text-center">
+
+    <form class="newtask" name="form" ng-submit="addTodo()">
+        <textarea class="newtask" placeholder="I'm ready to save.." autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
+        <button class="newtask add" ng-disabled="form.$invalid">Add</button>
+    </form>
+
+    <ul class="list-group">
+        <li ng-repeat='todo in todos' ng-class="{completed: todo.is_completed}" class="list-group-item">
+            <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model='todo.is_completed'>  {{todo.title}}
+            <span class='badge' ng-click="deleteTodo(todo.id)">X</span>
+        </li>
+    </ul>
+
+</div>

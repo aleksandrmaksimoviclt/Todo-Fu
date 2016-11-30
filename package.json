@@ -1,0 +1,27 @@
+{
+  "name": "Todo-Fu",
+  "version": "1.0.0",
+  "description": "Todo app that will get me an awesome job",
+  "scripts": {
+    "start": "concurrently --kill-others \"python manage.py runserver\" \"gulp watch\" "
+  },
+  "keywords": [],
+  "author": "aleksandrmaksimoviclt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aleksandrmaksimoviclt/Todo-Fu.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.9"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.2",
+    "concurrently": "^3.1.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "merge-stream": "^1.0.0",
+    "ui-router-extras": "^0.1.3"
+  }
+}
