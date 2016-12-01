@@ -17,6 +17,14 @@ app.controller('homeController', function($scope, Todos, $state){
         });
     };
 
+    $scope.editTodo = function($event, todo) {
+        // var todo = $event.srcElement();
+        var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
+        text.attr("contenteditable","true");
+        // console.log(text);
+        // event.target.
+    }
+
     $scope.toggleCompleted = function(todo) {
         Todos.update(todo);
     };
@@ -43,55 +51,15 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             templateUrl: 'assets/home/home.template.html',
             controller: 'homeController'
         });
+        // .state('home.add-todo', {
+        //     url: 'add-todo',
+        //     templateUrl: 'assets/home/add-todo.template.html',
+        //     controller: 'homeController'
+        // });
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
 });
-app.service('Todos', function($http, BASE_URL){
-    var Todos = {};
-
-    Todos.all = function(){
-        return $http.get(BASE_URL);
-    };
-
-    Todos.update = function(updatedTodo){
-        return $http.put(BASE_URL + updatedTodo.id + '/', updatedTodo);
-    };
-
-    Todos.delete = function(id){
-        return $http.delete(BASE_URL + id + '/');
-    };
-
-    Todos.addOne = function(newTodo){
-        return $http.post(BASE_URL, newTodo)
-    };
-
-    return Todos;
-    /**/
-});
-app.component('todoList', {
-  templateUrl: './assets/todo-list/todo-list.template.html',
-  controller: function TodoListController($scope) {
-    $scope.tasks = [{
-      text: 'Buy milk',
-      done: false
-    }];
-    $scope.addTask = function() {
-      $scope.tasks.push({
-        'text': $scope.newTask,
-        'done': false
-      })
-      $scope.newTask = ''
-      document.getElementsByName("newTask")[0].focus()
-    }
-    $scope.removeCompleted = function() {
-      $scope.tasks = $scope.tasks.filter(function(task) {
-        return !task.done
-      })
-    }
-  }
-});
-
 app.service('Todos', function($http, BASE_URL){
     var Todos = {};
 

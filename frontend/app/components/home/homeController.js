@@ -14,6 +14,14 @@ app.controller('homeController', function($scope, Todos, $state){
         });
     };
 
+    $scope.editTodo = function($event, todo) {
+        // var todo = $event.srcElement();
+        var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
+        text.attr("contenteditable","true");
+        // console.log(text);
+        // event.target.
+    }
+
     $scope.toggleCompleted = function(todo) {
         Todos.update(todo);
     };

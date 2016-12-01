@@ -8,6 +8,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             templateUrl: 'assets/home/home.template.html',
             controller: 'homeController'
         });
+        // .state('home.add-todo', {
+        //     url: 'add-todo',
+        //     templateUrl: 'assets/home/add-todo.template.html',
+        //     controller: 'homeController'
+        // });
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
