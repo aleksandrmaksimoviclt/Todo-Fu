@@ -1,6 +1,10 @@
 body {
   background-color: #0079bf;
   font-family: 'Montserrat', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
 }
 
 .board-wrapper{
@@ -55,14 +59,40 @@ body {
             
             .card{
                 background-color: #fff;
+                border: 0px solid;
                 border-bottom: 1px solid #ccc;
                 border-radius: 3px;
                 cursor: pointer;
+                margin-top: 6px;
                 margin-bottom: 6px;
                 max-width: 300px;
                 min-height: 20px;
                 position: relative;
                 z-index: 0;
+                transition : 100ms all;
+
+                &.is_hovered{
+                    background-color: #EDEFF0;
+                    transition : 100ms background-color;
+                }
+
+                &.is_focused {
+                    transition : 100ms box-shadow;
+                    box-shadow: 0px 0px 1px 2px #9e9e9e;
+                }
+
+                &.is_focused:after {
+                    content: '';
+                    height: 24px;
+                    widows: 24px;
+                    background-color: green;
+                }
+
+                &.is_saved{
+                    
+                    animation: saved 500ms;
+                    animation-delay: 200ms;
+                }
 
                 .card-details{
 
@@ -82,18 +112,52 @@ body {
                         font-size: 14px;
                         font-weight: 300;
                         color: #4d4d4d;
+                        transition : 100ms color;
 
                         span.is_hovered {
                             color:#333;
+                            transition : 100ms color;
+                        }
+
+                        span:focus {
+                            outline: unset;
+                            display: block;
                         }
                     }
-                }
-                    
-            }
-
-            .card.is_hovered{
-                background-color: #EDEFF0;
+                }   
             }
         }
+
+        .card-composer {
+            padding-bottom: 8px;
+        }
+
+        .open-card-composer {
+                border-radius: 0 0 3px 3px;
+                color: #8c8c8c;
+                display: block;
+                font-size: 12px;
+                -webkit-box-flex: 0;
+                -webkit-flex: 0 0 auto;
+                -ms-flex: 0 0 auto;
+                flex: 0 0 auto;
+                padding: 8px 10px;
+                position: relative;
+                text-decoration: none;
+                -webkit-user-select: none;
+                user-select: none;
+        }
+
+        .open-card-composer:hover {
+            background-color: #CDD2D4;
+            color: #4d4d4d;
+            text-decoration: underline;
+        }
     }
+}
+
+@keyframes saved {
+    50%  {box-shadow: 0px 0px 1px 2px rgb(127, 236, 131);}
+    // 50%  {background-color: rgba(255, 255, 255, 1);}
+    // 75%  {background-color: rgba(127, 236, 131, 0.5);}
 }

@@ -3,26 +3,31 @@
     <div class="board">
         <div class="heading">To do</div>
         <div class="card-list">
-            <div ng-repeat="todo in todos"  ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover}" ng-dblclick="editTodo($event, todo)" class="card">
+            <div ng-repeat="todo in todos"  ng-mouseenter="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
                 <div class="card-details">
                     <div class="card-content">
-                        <span ng-class="{is_hovered: hover}">
+                        <span ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover}">
                             {{todo.title}}
                         </span>
-                        <span class='badge' ng-click="deleteTodo(todo.id)">X</span>
+                        <!--<span class="badge" ng-click="deleteTodo(todo.id)">X</span>-->
                     </div>
                 </div>
-
             </div>
         </div>
-        
-        <form class="newtask" name="form" ng-submit="addTodo()">
-            <textarea class="newtask" placeholder="I'm ready to save.." autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
-            <button class="newtask add" ng-disabled="form.$invalid">Add</button>
-        </form>
-
+        <div class="card-composer hide">
+                <div class="card">
+                    <div class="card-details">
+                        <form id="addTodo" class="newtask" name="form" ng-submit="addTodo()">
+                            <textarea class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <button class="newtask add" form="addTodo" ng-disabled="form.$invalid">Add</button>
+                </div>
+            </div>
+            <a class="open-card-composer" href="#">Add a card...</a>
     </div>
 
 </div>
-
      <!--<input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model='todo.is_completed'>-->

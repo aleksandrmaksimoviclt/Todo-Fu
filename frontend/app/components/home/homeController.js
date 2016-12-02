@@ -14,12 +14,30 @@ app.controller('homeController', function($scope, Todos, $state){
         });
     };
 
-    $scope.editTodo = function($event, todo) {
-        // var todo = $event.srcElement();
+    $scope.editTodo = function($event) {
         var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
-        text.attr("contenteditable","true");
-        // console.log(text);
-        // event.target.
+        $event.preventDefault();
+        text.attr("contenteditable", "true");
+        text[0].focus();
+        // Todo: 
+        // - Set Focus to the end of text
+
+    }
+
+    $scope.stopEditTodo = function($index, $event, todo) {
+        angular.element(event.currentTarget).removeAttr('contenteditable');
+        titleBeforeEdit  = todo.title;
+        todo.title = event.currentTarget.innerText;
+        if (todo.title != titleBeforeEdit) {
+            Todos.update(todo).then(function($event) {
+                if ($event.status == 200) {
+                    console.log($index);
+                } else {
+                    console.log($event.status);
+                }
+            });
+
+        }
     }
 
     $scope.toggleCompleted = function(todo) {
@@ -29,7 +47,7 @@ app.controller('homeController', function($scope, Todos, $state){
     $scope.deleteTodo = function(id){
         Todos.delete(id);
 
-        $scope.todos = $scope.todos.filter(function(todo){
+        $scope.todos = $scope.todos.filter(function(todo) {
             return todo.id !== id;
         })
     };
@@ -38,3 +56,4 @@ app.controller('homeController', function($scope, Todos, $state){
         $scope.todos = res.data;
     });
 });
+
