@@ -18,10 +18,23 @@ app.controller('homeController', function($scope, Todos, $state){
         var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
         $event.preventDefault();
         text.attr("contenteditable", "true");
+        // Undesrtand how this works
         text[0].focus();
-        // Todo: 
-        // - Set Focus to the end of text
-
+        
+        if (typeof window.getSelection != "undefined"
+                && typeof document.createRange != "undefined") {
+            var range = document.createRange();
+            range.selectNodeContents(text[0]);
+            range.collapse(false);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.body.createTextRange != "undefined") {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(text[0]);
+            textRange.collapse(false);
+            textRange.select();
+        }
     }
 
     $scope.stopEditTodo = function($index, $event, todo) {
