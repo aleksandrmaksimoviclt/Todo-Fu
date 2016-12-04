@@ -10,6 +10,8 @@ app.controller('homeController', function($scope, Todos, $state){
         Todos.addOne($scope.newTodo).then(function(){
             Todos.all().then(function(res){
                 $scope.todos = res.data;
+                document.Form.newTask.value='';
+                setFocus();
             });
         });
     };
