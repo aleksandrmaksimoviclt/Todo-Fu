@@ -23,7 +23,7 @@ app.controller('homeController', function($scope, Todos, $state){
         text.attr("contenteditable", "true");
         // Undesrtand how this works
         text[0].focus();
-        
+
         if (typeof window.getSelection != "undefined"
                 && typeof document.createRange != "undefined") {
             var range = document.createRange();
@@ -73,7 +73,13 @@ app.controller('homeController', function($scope, Todos, $state){
     });
 });
 
-
+app.controller('cardComposerController', function($scope){
+    
+    $scope.toggleComposer = function(boolean) {
+        $scope.hide = boolean;
+        setTimeout(setFocus, 1)
+    };
+});
 app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){

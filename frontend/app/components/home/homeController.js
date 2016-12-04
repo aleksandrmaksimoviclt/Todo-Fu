@@ -20,7 +20,7 @@ app.controller('homeController', function($scope, Todos, $state){
         text.attr("contenteditable", "true");
         // Undesrtand how this works
         text[0].focus();
-        
+
         if (typeof window.getSelection != "undefined"
                 && typeof document.createRange != "undefined") {
             var range = document.createRange();
@@ -70,3 +70,10 @@ app.controller('homeController', function($scope, Todos, $state){
     });
 });
 
+app.controller('cardComposerController', function($scope){
+    
+    $scope.toggleComposer = function(boolean) {
+        $scope.hide = boolean;
+        setTimeout(setFocus, 1)
+    };
+});

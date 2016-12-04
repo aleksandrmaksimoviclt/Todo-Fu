@@ -14,20 +14,25 @@
                 </div>
             </div>
         </div>
-        <div class="card-composer hide">
+        <div ng-controller="cardComposerController">
+            <div ng-class="{hide: !hide}" class="card-list card-composer hide">
                 <div class="card">
                     <div class="card-details">
-                        <form id="addTodo" class="newtask" name="form" ng-submit="addTodo()">
-                            <textarea class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
+                        <form id="addTodo" class="newtask" name="Form" ng-submit="addTodo()">
+                            <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
                         </form>
                     </div>
                 </div>
                 <div>
                     <button class="newtask add" form="addTodo" ng-disabled="form.$invalid">Add</button>
+                    <button ng-click="toggleComposer(false)" class="close editor">X</button>
                 </div>
             </div>
-            <a class="open-card-composer" href="#">Add a card...</a>
+            <a onclick="setFocus()" ng-click="toggleComposer(true)" ng-class="{hide: hide}" class="open-card-composer" href="#">Add a card...</a>
+        </div>
     </div>
 
 </div>
+
+
      <!--<input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model='todo.is_completed'>-->

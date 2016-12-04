@@ -1,10 +1,6 @@
 body {
   background-color: #0079bf;
   font-family: 'Montserrat', sans-serif;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
 }
 .board-wrapper {
   width: 270px;
@@ -128,9 +124,6 @@ body {
   flex: 0 0 auto;
   padding: 8px 10px;
   position: relative;
-  text-decoration: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 .board-wrapper .board .open-card-composer:hover {
   background-color: #CDD2D4;
@@ -143,7 +136,7 @@ body {
   }
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 textarea,
 textarea:focus {
@@ -165,6 +158,9 @@ textarea:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  font-size: 14px;
+  font-weight: 300;
+  color: #4d4d4d;
 }
 @font-face {
   font-family: 'montserrat';
