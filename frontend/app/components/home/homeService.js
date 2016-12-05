@@ -18,5 +18,5 @@ app.service('Todos', function($http, BASE_URL){
     };
 
     return Todos;
-    /**/
+
 });

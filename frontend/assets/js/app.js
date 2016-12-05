@@ -1,5 +1,6 @@
 var app = angular.module('todofu', [
-    'ui.router',
+    'ngAnimate',
+    'ui.router'
 ]);
 app.controller('homeController', function($scope, Todos, $state){
     
@@ -9,13 +10,16 @@ app.controller('homeController', function($scope, Todos, $state){
                         $scope.todos = res.data;
                    });
 
-    $scope.addTodo = function() {
-        Todos.addOne($scope.newTodo).then(function(){
-            Todos.all().then(function(res){
-                $scope.todos = res.data;
+    $scope.addTodo = function($event) {
+        Todos.addOne($scope.newTodo).then(function($event){
+
+            if ($event.status == 201) {
+                $scope.todos.push($event.data);
                 document.Form.newTask.value='';
                 setFocus();
-            });
+            } else {
+                console.log('Error');
+            }
         });
     };
 
@@ -69,10 +73,6 @@ app.controller('homeController', function($scope, Todos, $state){
             return todo.id !== id;
         })
     };
-
-    Todos.all().then(function(res){
-        $scope.todos = res.data;
-    });
 });
 
 app.controller('cardComposerController', function($scope){
@@ -121,5 +121,5 @@ app.service('Todos', function($http, BASE_URL){
     };
 
     return Todos;
-    /**/
+
 });

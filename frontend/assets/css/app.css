@@ -165,30 +165,6 @@ body {
     box-shadow: 0px 0px 1px 2px #7fec83;
   }
 }
-.ng-enter {
-  -webkit-transition: 1s;
-  transition: 1s;
-  margin-left: 100%;
-}
-.ng-enter-active {
-  margin-left: 0;
-}
-.ng-leave {
-  -webkit-transition: 1s;
-  transition: 1s;
-  margin-left: 0;
-}
-.ng-leave-active {
-  margin-left: 100%;
-}
-.ng-move {
-  -webkit-transition: 1s;
-  transition: 1s;
-  background: gold;
-}
-.ng-move-active {
-  background: #fff;
-}
 .hide {
   display: none !important;
 }
