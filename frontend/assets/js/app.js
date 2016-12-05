@@ -82,25 +82,6 @@ app.controller('cardComposerController', function($scope){
         setTimeout(setFocus, 1)
     };
 });
-app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
-
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
-
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: 'assets/home/home.template.html',
-            controller: 'homeController'
-        });
-        // .state('home.add-todo', {
-        //     url: 'add-todo',
-        //     templateUrl: 'assets/home/add-todo.template.html',
-        //     controller: 'homeController'
-        // });
-
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/');
-});
 app.service('Todos', function($http, BASE_URL){
     var Todos = {};
 
@@ -122,4 +103,23 @@ app.service('Todos', function($http, BASE_URL){
 
     return Todos;
 
+});
+app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
+
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+
+    $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: 'assets/home/home.template.html',
+            controller: 'homeController'
+        });
+        // .state('home.add-todo', {
+        //     url: 'add-todo',
+        //     templateUrl: 'assets/home/add-todo.template.html',
+        //     controller: 'homeController'
+        // });
+
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
 });
