@@ -67,7 +67,6 @@ body {
   min-height: 20px;
   position: relative;
   z-index: 0;
-  transition: 100ms all;
 }
 .board-wrapper .board .card-list .card.is_hovered {
   background-color: #EDEFF0;
@@ -86,6 +85,40 @@ body {
 .board-wrapper .board .card-list .card.is_saved {
   animation: saved 500ms;
   animation-delay: 200ms;
+}
+.board-wrapper .board .card-list .card.ng-enter {
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+  transform: translateX(100%);
+}
+.board-wrapper .board .card-list .card.ng-enter-active {
+  transform: translateX(0%);
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+.board-wrapper .board .card-list .card.ng-leave {
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+  transform: translateX(0%);
+  opacity: 1;
+}
+.board-wrapper .board .card-list .card.ng-leave-active {
+  transform: translateX(100%);
+  opacity: 0;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+}
+.board-wrapper .board .card-list .card.ng-move {
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
+  transform: translateY(0%);
+  opacity: 1;
+}
+.board-wrapper .board .card-list .card.ng-move-active {
+  transform: translateY(100%);
+  opacity: 0;
+  -webkit-transition: 500ms all;
+  transition: 500ms all;
 }
 .board-wrapper .board .card-list .card .card-details {
   overflow: hidden;

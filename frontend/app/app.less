@@ -69,7 +69,7 @@ body {
                 min-height: 20px;
                 position: relative;
                 z-index: 0;
-                transition : 100ms all;
+                // transition : 900ms all;
 
                 &.is_hovered{
                     background-color: #EDEFF0;
@@ -92,6 +92,46 @@ body {
                     
                     animation: saved 500ms;
                     animation-delay: 200ms;
+                }
+
+                &.ng-enter {
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
+                  transform: translateX(100%);
+                }
+
+                &.ng-enter-active {
+                  transform: translateX(0%);
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
+                }
+
+                &.ng-leave {
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
+                  transform: translateX(0%);
+                  opacity: 1;
+                }
+
+                &.ng-leave-active {
+                  transform: translateX(100%);
+                  opacity: 0;
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
+                }
+
+                &.ng-move {
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
+                  transform: translateY(0%);
+                  opacity: 1;
+                }
+
+                &.ng-move-active {
+                  transform: translateY(100%);
+                  opacity: 0;
+                  -webkit-transition: 500ms all;
+                  transition: 500ms all;
                 }
 
                 .card-details{

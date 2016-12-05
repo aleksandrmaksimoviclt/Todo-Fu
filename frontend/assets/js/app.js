@@ -27,7 +27,7 @@ app.controller('homeController', function($scope, Todos, $state){
         var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
         $event.preventDefault();
         text.attr("contenteditable", "true");
-        // Undesrtand how this works
+
         text[0].focus();
 
         if (typeof window.getSelection != "undefined"
