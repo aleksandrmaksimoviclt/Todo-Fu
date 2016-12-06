@@ -1,6 +1,6 @@
 var app = angular.module('todofu', [
-    'angular-toArrayFilter',
     'ngAnimate',
+    'angular-toArrayFilter',
     'ui.router'
 ]);
 app.controller('homeController', function($scope, Todos, $state){

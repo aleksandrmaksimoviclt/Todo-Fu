@@ -18,9 +18,10 @@
             </div>
         </div>
         
-        <div class="heading sub-heading">
+        <div ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
             <div ng-repeat="todo in completedTodos = (todos | toArray:false | filter:!todo.is_completed)"></div>
-            Completed tasks {{completedTodos.length}}
+            <div class="content"><i class="fa fa-angle-down drop-down" aria-hidden="true"></i>
+            {{completedTodos.length}} completed {{completedTodos.length == 1 ? "task" : "tasks"}}</div>
         </div>
 
         <div class="card-list">
@@ -28,7 +29,7 @@
                 <div class="card-details">
                     <div class="card-content">
                         <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
-                        <span ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover}">
+                        <span ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover, completed: todo.is_completed=true}">
                             {{todo.title}}
                         </span>
                         <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>

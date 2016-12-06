@@ -44,6 +44,20 @@ body {
   font-weight: 800;
   color: #4d4d4d;
 }
+.board-wrapper .board .heading.sub-heading {
+  font-size: 14px;
+  min-height: 14px;
+  padding: 8px;
+}
+.board-wrapper .board .heading .content {
+  overflow: hidden;
+  padding: 6px 6px 2px 8px;
+  position: relative;
+  z-index: 10;
+}
+.board-wrapper .board .heading .content .drop-down {
+  margin-right: 6px;
+}
 .board-wrapper .board .card-list {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 auto;
@@ -147,6 +161,10 @@ body {
   color: #333;
   transition: 100ms color;
 }
+.board-wrapper .board .card-list .card .card-details .card-content .completed {
+  text-decoration: line-through;
+  color: gray;
+}
 .board-wrapper .board .card-list .card .card-details .card-content span:focus {
   outline: unset;
   display: block;
@@ -215,6 +233,9 @@ body {
 .hide {
   display: none !important;
 }
+.show {
+  display: block !important;
+}
 textarea,
 textarea:focus {
   font-family: 'Montserrat', sans-serif;
@@ -238,6 +259,14 @@ textarea:focus {
   font-size: 14px;
   font-weight: 300;
   color: #4d4d4d;
+}
+input[type="checkbox"] {
+  margin: 0;
+  vertical-align: text-top;
+  height: 12px;
+  width: 12px;
+  float: left;
+  margin-right: 6px;
 }
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
