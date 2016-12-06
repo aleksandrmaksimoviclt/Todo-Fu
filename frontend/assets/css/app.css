@@ -30,6 +30,7 @@ body {
   max-height: 100%;
   position: relative;
   white-space: normal;
+  animation: boardEnter 500ms;
 }
 .board-wrapper .board .heading {
   -webkit-box-flex: 0;
@@ -90,6 +91,9 @@ body {
   -webkit-transition: 500ms all;
   transition: 500ms all;
   transform: translateX(100%);
+}
+.board-wrapper .board .card-list .card.ng-enter-stagger {
+  transition-delay: 0.1s;
 }
 .board-wrapper .board .card-list .card.ng-enter-active {
   transform: translateX(0%);
@@ -196,6 +200,16 @@ body {
 @keyframes saved {
   50% {
     box-shadow: 0px 0px 1px 2px #7fec83;
+  }
+}
+@keyframes boardEnter {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
   }
 }
 .hide {

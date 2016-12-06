@@ -31,6 +31,7 @@ body {
         max-height: 100%;
         position: relative;
         white-space: normal;
+        animation: boardEnter 500ms;
 
         .heading{
             -webkit-box-flex: 0;
@@ -43,6 +44,10 @@ body {
             font-size: 18px;
             font-weight: 800;
             color: #4d4d4d;
+
+            &.sub-heading{
+                
+            }
         }
 
         .card-list {
@@ -98,6 +103,10 @@ body {
                   -webkit-transition: 500ms all;
                   transition: 500ms all;
                   transform: translateX(100%);
+                }
+
+                &.ng-enter-stagger{
+                    transition-delay: 0.1s;
                 }
 
                 &.ng-enter-active {
@@ -230,4 +239,9 @@ body {
     50%  {box-shadow: 0px 0px 1px 2px rgb(127, 236, 131);}
     // 50%  {background-color: rgba(255, 255, 255, 1);}
     // 75%  {background-color: rgba(127, 236, 131, 0.5);}
+}
+
+@keyframes boardEnter {
+    0% {transform: translateX(50px); opacity: 0;}
+    100% {transform: translateX(0px); opacity: 1;}
 }

@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.9",
-    "angular-animate": "^1.5.9"
+    "angular-animate": "^1.5.9",
+    "angular-toarrayfilter": "^1.0.1"
   },
   "devDependencies": {
     "browser-sync": "^2.18.2",
