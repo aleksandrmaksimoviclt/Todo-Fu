@@ -69,6 +69,10 @@ app.controller('homeController', function($scope, Todos, $state){
             return todo.id !== id;
         })
     };
+
+    // $scope.toggleCompletedDropdown = function(){
+        
+    // }
 });
 
 app.controller('cardComposerController', function($scope){

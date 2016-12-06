@@ -18,7 +18,7 @@
             </div>
         </div>
         
-        <div ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
+        <div ng-click="showDropdown=!showDropdown" ng-class="{show: completedTodos.length != 0, showDropdown: showDropdown}" class="heading sub-heading hide">
             <div ng-repeat="todo in completedTodos = (todos | toArray:false | filter:!todo.is_completed)"></div>
             <div class="content"><i class="fa fa-angle-down drop-down" aria-hidden="true"></i>
             {{completedTodos.length}} completed {{completedTodos.length == 1 ? "task" : "tasks"}}</div>
