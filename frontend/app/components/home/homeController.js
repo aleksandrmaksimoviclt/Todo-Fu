@@ -60,6 +60,13 @@ app.controller('homeController', function($scope, Todos, $state){
 
     $scope.toggleCompleted = function(todo) {
         Todos.update(todo);
+        dateNow = new Date();
+        if (todo.is_completed) {
+            lastCompletedDate = new Date();
+            dayDifference = Math.abs(dateNow - lastCompletedDate);
+            console.log(dayDifference);
+            $scope.lastCompleted = lastCompletedDate.getHours() + ":" + lastCompletedDate.getMinutes();
+        }
     };
 
     $scope.deleteTodo = function(id){
