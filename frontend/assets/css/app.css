@@ -5,6 +5,14 @@ body {
   -moz-user-select: none;
   -khtml-user-select: none;
   -ms-user-select: none;
+  line-height: 1.4;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #c3c4c5;
+  border-radius: 6px;
 }
 .board-wrapper {
   width: 270px;
@@ -58,6 +66,13 @@ body {
 }
 .board-wrapper .board .heading .content .drop-down {
   margin-right: 6px;
+  transition: 500ms all;
+  transform: rotate(-90deg);
+}
+.board-wrapper .board .heading .content .drop-down.showDropdown {
+  margin-right: 12px;
+  transition: 500ms all;
+  transform: rotate(0deg);
 }
 .board-wrapper .board .card-list {
   -webkit-box-flex: 1;
@@ -70,6 +85,13 @@ body {
   padding: 0 4px;
   z-index: 1;
   min-height: 0;
+  max-height: 400px;
+  transition: 500ms all;
+}
+.board-wrapper .board .card-list.showDropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: 500ms all;
 }
 .board-wrapper .board .card-list .card {
   background-color: #fff;
@@ -77,7 +99,6 @@ body {
   border-bottom: 1px solid #ccc;
   border-radius: 3px;
   cursor: pointer;
-  margin-top: 6px;
   margin-bottom: 6px;
   max-width: 300px;
   min-height: 20px;
@@ -262,8 +283,8 @@ textarea:focus {
   color: #4d4d4d;
 }
 input[type="checkbox"] {
-  margin: 0;
-  vertical-align: text-top;
+  margin: 0px;
+  margin-top: 2px;
   height: 12px;
   width: 12px;
   float: left;
