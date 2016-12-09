@@ -44,6 +44,7 @@ app.controller('homeController', function($scope, Todos, $state){
 
     $scope.stopEditTodo = function($index, $event, todo) {
         angular.element(event.currentTarget).removeAttr('contenteditable');
+        console.log(angular.element(event.currentTarget).removeAttr('contenteditable'));
         titleBeforeEdit  = todo.title;
         todo.title = event.currentTarget.innerText;
         if (todo.title != titleBeforeEdit) {

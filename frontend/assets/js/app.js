@@ -3,6 +3,26 @@ var app = angular.module('todofu', [
     'angular-toArrayFilter',
     'ui.router'
 ]);
+
+app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
+
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+
+    $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: 'assets/home/home.template.html',
+            controller: 'homeController'
+        });
+        // .state('home.add-todo', {
+        //     url: 'add-todo',
+        //     templateUrl: 'assets/home/add-todo.template.html',
+        //     controller: 'homeController'
+        // });
+
+    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
+});
 app.controller('homeController', function($scope, Todos, $state){
     
     $scope.newTodo = {};
@@ -49,6 +69,7 @@ app.controller('homeController', function($scope, Todos, $state){
 
     $scope.stopEditTodo = function($index, $event, todo) {
         angular.element(event.currentTarget).removeAttr('contenteditable');
+        console.log(angular.element(event.currentTarget).removeAttr('contenteditable'));
         titleBeforeEdit  = todo.title;
         todo.title = event.currentTarget.innerText;
         if (todo.title != titleBeforeEdit) {
@@ -99,30 +120,12 @@ app.controller('cardComposerController', function($scope){
         setTimeout(setFocus, 1)
     };
 });
-app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
-
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
-
-    $stateProvider
-        .state('home', {
-            url: '/',
-            templateUrl: 'assets/home/home.template.html',
-            controller: 'homeController'
-        });
-        // .state('home.add-todo', {
-        //     url: 'add-todo',
-        //     templateUrl: 'assets/home/add-todo.template.html',
-        //     controller: 'homeController'
-        // });
-
-    $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/');
-});
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
+        element.bind("keydown", function (event) {
             if(event.which === 13) {
                 scope.$apply(function (){
+                    console.log(attrs.ngEnter);
                     scope.$eval(attrs.ngEnter);
                 });
  
