@@ -25,11 +25,11 @@
         </div>
 
         <div class="card-list" ng-class="{showDropdown: !showDropdown}">
-            <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" ng-enter="stopEditTodo($index, $event, todo); focus = false;" class="card">
+            <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
                 <div class="card-details">
                     <div class="card-content">
                         <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
-                        <span ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover, completed: todo.is_completed=true}">
+                        <span ng-enter="stopEditTodo($index, $event, todo); focus = false;" ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover, completed: todo.is_completed=true}">
                             {{todo.title}}
                         </span>
                         <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
