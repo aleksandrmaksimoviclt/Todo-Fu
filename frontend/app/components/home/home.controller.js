@@ -77,6 +77,11 @@ app.controller('homeController', function($scope, Todos, $state){
         })
     };
 
+    $scope.saveTodo = function($event, todo) {
+        angular.element(event.currentTarget).removeAttr('contenteditable');
+        console.log(todo);
+    };
+
     // $scope.toggleCompletedDropdown = function(){
         
     // }

@@ -5,7 +5,7 @@
         <div class="heading">To do</div>
 
         <div class="card-list">
-            <div ng-repeat="todo in todos | toArray:false | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
+            <div ng-repeat="todo in todos | toArray:false | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" ng-enter="stopEditTodo($index, $event, todo); focus = false;" class="card">
                 <div class="card-details">
                     <div class="card-content">
                         <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
@@ -25,7 +25,7 @@
         </div>
 
         <div class="card-list" ng-class="{showDropdown: !showDropdown}">
-            <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
+            <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" ng-enter="stopEditTodo($index, $event, todo); focus = false;" class="card">
                 <div class="card-details">
                     <div class="card-content">
                         <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">

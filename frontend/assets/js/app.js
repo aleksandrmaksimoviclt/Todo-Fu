@@ -82,6 +82,11 @@ app.controller('homeController', function($scope, Todos, $state){
         })
     };
 
+    $scope.saveTodo = function($event, todo) {
+        angular.element(event.currentTarget).removeAttr('contenteditable');
+        console.log(todo);
+    };
+
     // $scope.toggleCompletedDropdown = function(){
         
     // }
@@ -112,6 +117,19 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
+});
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
 });
 app.service('Todos', function($http, BASE_URL){
     var Todos = {};
