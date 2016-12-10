@@ -1,0 +1,4 @@
+Django==1.10.3
+djangorestframework==3.5.3
+Pillow==3.4.2
+pkg-resources==0.0.0
