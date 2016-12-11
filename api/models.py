@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Boards(models.Model):
+class Board(models.Model):
     background_color = models.CharField(max_length=7)
     list = models.ForeignKey('List', null=True)
     name = models.TextField(null=True, blank=True)

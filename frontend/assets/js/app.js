@@ -100,20 +100,6 @@ app.controller('cardComposerController', function($scope){
         setTimeout(setFocus, 1)
     };
 });
-app.directive('ngEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    console.log(attrs.ngEnter);
-                    scope.$eval(attrs.ngEnter);
-                });
- 
-                event.preventDefault();
-            }
-        });
-    };
-});
 app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
@@ -133,6 +119,43 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
 });
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    console.log(attrs.ngEnter);
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
+});
+// app.service('Boards', function($http, BASE_URL){
+//     var Todos = {};
+
+//     Todos.all = function(){
+//         return $http.get(BASE_URL);
+//     };
+
+//     Todos.update = function(updatedTodo){
+//         return $http.put(BASE_URL + updatedTodo.id + '/', updatedTodo);
+//     };
+
+//     Todos.delete = function(id){
+//         return $http.delete(BASE_URL + id + '/');
+//     };
+
+//     Todos.addOne = function(newTodo){
+//         return $http.post(BASE_URL, newTodo)
+//     };
+
+//     return Todos;
+
+// });
+
 app.service('Todos', function($http, BASE_URL){
     var Todos = {};
 
