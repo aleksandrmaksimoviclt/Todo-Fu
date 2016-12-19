@@ -43,6 +43,6 @@ class User(models.Model):
     photo = models.ImageField(upload_to='user_profile_picture')
 
     def __str__(self):
-        return self.name
+        return self.first_name
 
 
