@@ -17,10 +17,16 @@ from .models import *
 
 #   def has_add_permission(self, request):
 #       return False if self.model.objects.count() >= 4 else True
+class TodoInline(admin.TabularInline):
+    model = Todo
 
+class ListAdmin(admin.ModelAdmin):
+    inlines = [
+        TodoInline,
+    ]
 
 admin.site.register(Board)
 admin.site.register(Label)
-admin.site.register(List)
+admin.site.register(List, ListAdmin)
 admin.site.register(Todo)
 admin.site.register(User)

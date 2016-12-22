@@ -20,7 +20,7 @@ class Label(models.Model):
 
 class List(models.Model):
     name = models.TextField(null=True, blank=True)
-    todo = models.ForeignKey('Todo', null=True)
+    # todo = models.ForeignKey('Todo', null=True)
 
     def __str__(self):
         return self.name
@@ -30,6 +30,7 @@ class Todo(models.Model):
     due_date = models.DateTimeField(null=True)
     is_completed = models.BooleanField(default=False)
     label = models.ForeignKey('Label', null=True)
+    list = models.ForeignKey('List', null=True)
     title = models.TextField(null=True)
 
     def __str__(self):
@@ -44,5 +45,3 @@ class User(models.Model):
 
     def __str__(self):
         return self.first_name
-
-
