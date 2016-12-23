@@ -14,7 +14,10 @@ body {
   background-color: #c3c4c5;
   border-radius: 6px;
 }
-.board-wrapper {
+.lists-wrapper {
+  display: inline-flex;
+}
+.list-wrapper {
   width: 270px;
   margin: 0 5px;
   height: 100%;
@@ -24,7 +27,7 @@ body {
   vertical-align: top;
   white-space: nowrap;
 }
-.board-wrapper .board {
+.list-wrapper .list {
   background: #E2E4E6;
   border-radius: 3px;
   box-sizing: border-box;
@@ -40,7 +43,7 @@ body {
   white-space: normal;
   animation: boardEnter 500ms;
 }
-.board-wrapper .board .time-stamp {
+.list-wrapper .list .time-stamp {
   text-align: right;
   font-size: 12px;
   font-weight: 300;
@@ -48,7 +51,7 @@ body {
   padding: 6px 0px 2px;
   color: #333;
 }
-.board-wrapper .board .heading {
+.list-wrapper .list .heading {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
@@ -60,29 +63,29 @@ body {
   font-weight: 800;
   color: #4d4d4d;
 }
-.board-wrapper .board .heading.sub-heading {
+.list-wrapper .list .heading.sub-heading {
   font-size: 14px;
   min-height: 14px;
   padding: 8px;
   cursor: pointer;
 }
-.board-wrapper .board .heading .content {
+.list-wrapper .list .heading .content {
   overflow: hidden;
   padding: 6px 6px 2px 8px;
   position: relative;
   z-index: 10;
 }
-.board-wrapper .board .heading .content .drop-down {
+.list-wrapper .list .heading .content .drop-down {
   margin-right: 6px;
   transition: 500ms all;
   transform: rotate(-90deg);
 }
-.board-wrapper .board .heading .content .drop-down.showDropdown {
+.list-wrapper .list .heading .content .drop-down.showDropdown {
   margin-right: 12px;
   transition: 500ms all;
   transform: rotate(0deg);
 }
-.board-wrapper .board .card-list {
+.list-wrapper .list .card-list {
   -webkit-box-flex: 1;
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
@@ -96,12 +99,12 @@ body {
   max-height: 400px;
   transition: 500ms all;
 }
-.board-wrapper .board .card-list.showDropdown {
+.list-wrapper .list .card-list.showDropdown {
   max-height: 0;
   overflow: hidden;
   transition: 500ms all;
 }
-.board-wrapper .board .card-list .card {
+.list-wrapper .list .card-list .card {
   background-color: #fff;
   border: 0px solid;
   border-bottom: 1px solid #ccc;
@@ -114,68 +117,68 @@ body {
   position: relative;
   z-index: 0;
 }
-.board-wrapper .board .card-list .card.is_hovered {
+.list-wrapper .list .card-list .card.is_hovered {
   background-color: #EDEFF0;
   transition: 100ms background-color;
 }
-.board-wrapper .board .card-list .card.is_focused {
+.list-wrapper .list .card-list .card.is_focused {
   transition: 100ms box-shadow;
   box-shadow: 0px 0px 1px 2px #9e9e9e;
 }
-.board-wrapper .board .card-list .card.is_focused::after {
+.list-wrapper .list .card-list .card.is_focused::after {
   content: '';
   height: 24px;
   widows: 24px;
   background-color: green;
 }
-.board-wrapper .board .card-list .card.is_saved {
+.list-wrapper .list .card-list .card.is_saved {
   animation: saved 500ms;
   animation-delay: 200ms;
 }
-.board-wrapper .board .card-list .card.ng-enter {
+.list-wrapper .list .card-list .card.ng-enter {
   -webkit-transition: 500ms all;
   transition: 500ms all;
   transform: translateX(100%);
 }
-.board-wrapper .board .card-list .card.ng-enter-stagger {
+.list-wrapper .list .card-list .card.ng-enter-stagger {
   transition-delay: 0.1s;
 }
-.board-wrapper .board .card-list .card.ng-enter-active {
+.list-wrapper .list .card-list .card.ng-enter-active {
   transform: translateX(0%);
   -webkit-transition: 500ms all;
   transition: 500ms all;
 }
-.board-wrapper .board .card-list .card.ng-leave {
+.list-wrapper .list .card-list .card.ng-leave {
   -webkit-transition: 500ms all;
   transition: 500ms all;
   transform: translateX(0%);
   opacity: 1;
 }
-.board-wrapper .board .card-list .card.ng-leave-active {
+.list-wrapper .list .card-list .card.ng-leave-active {
   transform: translateX(100%);
   opacity: 0;
   -webkit-transition: 500ms all;
   transition: 500ms all;
 }
-.board-wrapper .board .card-list .card.ng-move {
+.list-wrapper .list .card-list .card.ng-move {
   -webkit-transition: 500ms all;
   transition: 500ms all;
   transform: translateY(0%);
   opacity: 1;
 }
-.board-wrapper .board .card-list .card.ng-move-active {
+.list-wrapper .list .card-list .card.ng-move-active {
   transform: translateY(100%);
   opacity: 0;
   -webkit-transition: 500ms all;
   transition: 500ms all;
 }
-.board-wrapper .board .card-list .card .card-details {
+.list-wrapper .list .card-list .card .card-details {
   overflow: hidden;
   padding: 6px 6px 2px 8px;
   position: relative;
   z-index: 10;
 }
-.board-wrapper .board .card-list .card .card-details .card-content {
+.list-wrapper .list .card-list .card .card-details .card-content {
   clear: both;
   display: block;
   font-weight: 400;
@@ -188,19 +191,19 @@ body {
   color: #4d4d4d;
   transition: 100ms color;
 }
-.board-wrapper .board .card-list .card .card-details .card-content span.is_hovered {
+.list-wrapper .list .card-list .card .card-details .card-content span.is_hovered {
   color: #333;
   transition: 100ms color;
 }
-.board-wrapper .board .card-list .card .card-details .card-content .completed {
+.list-wrapper .list .card-list .card .card-details .card-content .completed {
   text-decoration: line-through;
   color: gray;
 }
-.board-wrapper .board .card-list .card .card-details .card-content span:focus {
+.list-wrapper .list .card-list .card .card-details .card-content span:focus {
   outline: unset;
   display: block;
 }
-.board-wrapper .board .card-list .card .card-details .card-content .card-delete {
+.list-wrapper .list .card-list .card .card-details .card-content .card-delete {
   background-color: #EDEFF0;
   background-clip: padding-box;
   background-origin: padding-box;
@@ -213,23 +216,23 @@ body {
   visibility: hidden;
   z-index: 40;
 }
-.board-wrapper .board .card-list .card .card-details .card-content .card-delete.is_visible {
+.list-wrapper .list .card-list .card .card-details .card-content .card-delete.is_visible {
   visibility: visible;
 }
-.board-wrapper .board .card-list .card .card-details .card-content .card-delete::before {
+.list-wrapper .list .card-list .card .card-details .card-content .card-delete::before {
   content: "\f1f8";
   font-size: 12px;
   font-family: "FontAwesome";
   vertical-align: top;
 }
-.board-wrapper .board .card-list .card .card-details .card-content .card-delete:hover {
+.list-wrapper .list .card-list .card .card-details .card-content .card-delete:hover {
   opacity: 1;
   background-color: #ccc;
 }
-.board-wrapper .board .card-composer {
+.list-wrapper .list .card-composer {
   padding-bottom: 8px;
 }
-.board-wrapper .board .open-card-composer {
+.list-wrapper .list .open-card-composer {
   border-radius: 0 0 3px 3px;
   color: #8c8c8c;
   display: block;
@@ -241,7 +244,7 @@ body {
   padding: 8px 10px;
   position: relative;
 }
-.board-wrapper .board .open-card-composer:hover {
+.list-wrapper .list .open-card-composer:hover {
   background-color: #CDD2D4;
   color: #4d4d4d;
   text-decoration: underline;
@@ -298,6 +301,60 @@ input[type="checkbox"] {
   width: 12px;
   float: left;
   margin-right: 6px;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-thin-webfont.woff2') format('woff2'), url('fonts/montserrat/montserrat-thin-webfont.woff') format('woff');
+  font-weight: 100;
+  font-style: thin;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-extralight-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-extralight-webfont.woff') format('woff');
+  font-weight: 200;
+  font-style: extralight;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-light-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: light;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-regular-webfont.woff2') format('woff2'), url('../../assetsfonts/montserrat/montserrat-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-medium-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: medium;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-semibold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-semibold-webfont.woff') format('woff');
+  font-weight: 600;
+  font-style: semibold;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-bold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: bold;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-extrabold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-extrabold-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: bolder;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('../../assets/fonts/montserrat/montserrat-black-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-black-webfont.woff') format('woff');
+  font-weight: 900;
+  font-style: black;
 }
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -2635,58 +2692,4 @@ input[type="checkbox"] {
   margin: 0;
   overflow: visible;
   clip: auto;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-thin-webfont.woff2') format('woff2'), url('fonts/montserrat/montserrat-thin-webfont.woff') format('woff');
-  font-weight: 100;
-  font-style: thin;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-extralight-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-extralight-webfont.woff') format('woff');
-  font-weight: 200;
-  font-style: extralight;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-light-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-light-webfont.woff') format('woff');
-  font-weight: 300;
-  font-style: light;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-regular-webfont.woff2') format('woff2'), url('../../assetsfonts/montserrat/montserrat-regular-webfont.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-medium-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-medium-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: medium;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-semibold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-semibold-webfont.woff') format('woff');
-  font-weight: 600;
-  font-style: semibold;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-bold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-bold-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: bold;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-extrabold-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-extrabold-webfont.woff') format('woff');
-  font-weight: 800;
-  font-style: bolder;
-}
-@font-face {
-  font-family: 'montserrat';
-  src: url('../../assets/fonts/montserrat/montserrat-black-webfont.woff2') format('woff2'), url('../../assets/fonts/montserrat/montserrat-black-webfont.woff') format('woff');
-  font-weight: 900;
-  font-style: black;
 }

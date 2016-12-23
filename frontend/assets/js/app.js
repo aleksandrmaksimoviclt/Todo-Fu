@@ -3,13 +3,21 @@ var app = angular.module('todofu', [
     'angular-toArrayFilter',
     'ui.router'
 ]);
-app.controller('homeController', function($scope, Todos, $state){
+app.controller('homeController', function($scope, $state, Lists, Todos){
     
     $scope.newTodo = {};
 
-    $scope.todos = Todos.all().then(function(res){
-                        $scope.todos = res.data;
-                   });
+    $scope.lists = Lists.all().then(function(res){
+                        $scope.lists = res.data;
+                    });
+
+    $scope.getTodos = function(list){
+        if (typeof list.id != 'undefined') {
+            Todos.all(list.id).then(function(res){
+                $scope.todos = res.data;
+            });
+        }
+    };
 
     $scope.addTodo = function($event) {
         Todos.addOne($scope.newTodo).then(function($event){
@@ -100,7 +108,9 @@ app.controller('cardComposerController', function($scope){
         setTimeout(setFocus, 1)
     };
 });
+app.constant('LIST_URL', 'http://localhost:8000/api/lists/');
 app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
+
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
@@ -133,34 +143,12 @@ app.directive('ngEnter', function () {
         });
     };
 });
-// app.service('Boards', function($http, BASE_URL){
-//     var Todos = {};
-
-//     Todos.all = function(){
-//         return $http.get(BASE_URL);
-//     };
-
-//     Todos.update = function(updatedTodo){
-//         return $http.put(BASE_URL + updatedTodo.id + '/', updatedTodo);
-//     };
-
-//     Todos.delete = function(id){
-//         return $http.delete(BASE_URL + id + '/');
-//     };
-
-//     Todos.addOne = function(newTodo){
-//         return $http.post(BASE_URL, newTodo)
-//     };
-
-//     return Todos;
-
-// });
-
-app.service('Todos', function($http, BASE_URL){
+app.service('Todos', function($http, BASE_URL, LIST_URL){
     var Todos = {};
 
-    Todos.all = function(){
-        return $http.get(BASE_URL);
+    Todos.all = function(id){
+        console.log('hello, my id is #' + id);
+        return $http.get(LIST_URL + id + '/todos/');
     };
 
     Todos.update = function(updatedTodo){
@@ -176,5 +164,28 @@ app.service('Todos', function($http, BASE_URL){
     };
 
     return Todos;
+
+});
+
+app.service('Lists', function($http, LIST_URL){
+    var Lists = {};
+
+    Lists.all = function(){
+        return $http.get(LIST_URL);
+    };
+
+    Lists.update = function(updatedList){
+        return $http.put(LIST_URL + updatedList.id + '/', updatedList);
+    };
+
+    Lists.delete = function(id){
+        return $http.delete(LIST_URL + id + '/');
+    };
+
+    Lists.addOne = function(newList){
+        return $http.post(LIST_URL, newList)
+    };
+
+    return Lists;
 
 });

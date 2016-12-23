@@ -1,62 +1,66 @@
-<div class="board-wrapper">
+<div class="lists-wrapper">
 
-    <div class="board">
+    <div ng-repeat="list in lists | toArray:false" class="list-wrapper">
 
-        <div class="heading">To do</div>
+        <div class="list">
 
-        <div class="card-list">
-            <div ng-repeat="todo in todos | toArray:false | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
-                <div class="card-details">
-                    <div class="card-content">
-                        <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
-                        <span ng-enter="stopEditTodo($index, $event, todo); focus = false;"  ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover}">
-                            {{todo.title}}
-                        </span>
-                        <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div ng-click="showDropdown=!showDropdown" ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
-            <div ng-repeat="todo in completedTodos = (todos | toArray:false | filter:!todo.is_completed)"></div>
-            <div class="content"><i ng-class="{showDropdown: showDropdown}" class="fa fa-angle-down drop-down" aria-hidden="true"></i>
-            {{completedTodos.length}} completed {{completedTodos.length == 1 ? "task" : "tasks"}}</div>
-        </div>
+            <div class="heading">{{list.name}}</div>
 
-        <div class="card-list" ng-class="{showDropdown: !showDropdown}">
-            <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
-                <div class="card-details">
-                    <div class="card-content">
-                        <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
-                        <span ng-enter="stopEditTodo($index, $event, todo); focus = false;" ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover, completed: todo.is_completed=true}">
-                            {{todo.title}}
-                        </span>
-                        <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
-                    </div>
-                </div>
-            </div>
-            <div ng-model="lastCompleted" class="time-stamp">
-                Last completed: {{lastCompleted}}
-            </div>
-        </div>
-
-        <div ng-controller="cardComposerController">
-            <div ng-class="{hide: !hide}" class="card-list card-composer hide">
-                <div class="card">
+            <div class="card-list" ng-init="getTodos(list)">
+                <div ng-repeat="todo in todos | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
                     <div class="card-details">
-                        <form id="addTodo" class="newtask" name="Form" ng-submit="addTodo($event)">
-                            <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
-                        </form>
+                        <div class="card-content">
+                            <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
+                            <span ng-enter="stopEditTodo($index, $event, todo); focus = false;"  ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover}">
+                                {{todo.title}}
+                            </span>
+                            <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button class="newtask add" form="addTodo" ng-disabled="form.$invalid">Add</button>
-                    <button ng-click="toggleComposer(false)" class="close editor">X</button>
-                </div>
             </div>
-            <a onclick="setFocus()" ng-click="toggleComposer(true)" ng-class="{hide: hide}" class="open-card-composer" href="#">Add a card...</a>
+            
+            <!-- <div ng-click="showDropdown=!showDropdown" ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
+                <div ng-repeat="todo in completedTodos = (todos | toArray:false | filter:!todo.is_completed)"></div>
+                <div class="content"><i ng-class="{showDropdown: showDropdown}" class="fa fa-angle-down drop-down" aria-hidden="true"></i>
+                {{completedTodos.length}} completed {{completedTodos.length == 1 ? "task" : "tasks"}}</div>
+            </div>
+
+            <div class="card-list" ng-class="{showDropdown: !showDropdown}">
+                <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
+                    <div class="card-details">
+                        <div class="card-content">
+                            <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
+                            <span ng-enter="stopEditTodo($index, $event, todo); focus = false;" ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover, completed: todo.is_completed=true}">
+                                {{todo.title}}
+                            </span>
+                            <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-model="lastCompleted" class="time-stamp">
+                    Last completed: {{lastCompleted}}
+                </div>
+            </div> -->
+
+            <div ng-controller="cardComposerController">
+                <div ng-class="{hide: !hide}" class="card-list card-composer hide">
+                    <div class="card">
+                        <div class="card-details">
+                            <form id="addTodo" class="newtask" name="Form" ng-submit="addTodo($event)">
+                                <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="newtask add" form="addTodo" ng-disabled="form.$invalid">Add</button>
+                        <button ng-click="toggleComposer(false)" class="close editor">X</button>
+                    </div>
+                </div>
+                <a onclick="setFocus()" ng-click="toggleComposer(true)" ng-class="{hide: hide}" class="open-card-composer" href="#">Add a card...</a>
+            </div>
         </div>
+
     </div>
 
 </div>

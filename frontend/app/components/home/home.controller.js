@@ -1,10 +1,18 @@
-app.controller('homeController', function($scope, Todos, $state){
+app.controller('homeController', function($scope, $state, Lists, Todos){
     
     $scope.newTodo = {};
 
-    $scope.todos = Todos.all().then(function(res){
-                        $scope.todos = res.data;
-                   });
+    $scope.lists = Lists.all().then(function(res){
+                        $scope.lists = res.data;
+                    });
+
+    $scope.getTodos = function(list){
+        if (typeof list.id != 'undefined') {
+            Todos.all(list.id).then(function(res){
+                $scope.todos = res.data;
+            });
+        }
+    };
 
     $scope.addTodo = function($event) {
         Todos.addOne($scope.newTodo).then(function($event){
