@@ -1,5 +1,5 @@
 app.controller('homeController', function($scope, $state, Lists, Todos){
-    
+
     $scope.newTodo = {};
 
     $scope.lists = Lists.all().then(function(res){
@@ -9,7 +9,7 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
     $scope.getTodos = function(list){
         if (typeof list.id != 'undefined') {
             Todos.all(list.id).then(function(res){
-                $scope.todos = res.data;
+                list.todos = res.data;
             });
         }
     };

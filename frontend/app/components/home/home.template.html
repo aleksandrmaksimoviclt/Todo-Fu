@@ -1,13 +1,13 @@
 <div class="lists-wrapper">
 
-    <div ng-repeat="list in lists | toArray:false" class="list-wrapper">
+    <div ng-repeat="list in lists | toArray:false" ng-init="getTodos(list)" class="list-wrapper">
 
         <div class="list">
 
             <div class="heading">{{list.name}}</div>
 
-            <div class="card-list" ng-init="getTodos(list)">
-                <div ng-repeat="todo in todos | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
+            <div class="card-list">
+                <div ng-repeat="todo in list.todos | filter:todo.is_completed=false" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
                     <div class="card-details">
                         <div class="card-content">
                             <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
