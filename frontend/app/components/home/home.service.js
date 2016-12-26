@@ -1,4 +1,4 @@
-app.service('Todos', function($http, BASE_URL, LIST_URL){
+app.service('Todos', function($http, TODOS_URL, LIST_URL){
     var Todos = {};
 
     Todos.all = function(id){
@@ -6,15 +6,15 @@ app.service('Todos', function($http, BASE_URL, LIST_URL){
     };
 
     Todos.update = function(updatedTodo){
-        return $http.put(BASE_URL + updatedTodo.id + '/', updatedTodo);
+        return $http.put(TODOS_URL + updatedTodo.id + '/', updatedTodo);
     };
 
     Todos.delete = function(id){
-        return $http.delete(BASE_URL + id + '/');
+        return $http.delete(TODOS_URL + id + '/');
     };
 
     Todos.addOne = function(newTodo){
-        return $http.post(BASE_URL, newTodo)
+        return $http.post(TODOS_URL, newTodo)
     };
 
     return Todos;

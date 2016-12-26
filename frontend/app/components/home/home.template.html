@@ -14,7 +14,7 @@
                             <span ng-enter="stopEditTodo($index, $event, todo); focus = false;"  ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, todo); focus = false;" ng-class="{is_hovered: hover}">
                                 {{todo.title}}
                             </span>
-                            <span class="card-delete" ng-click="deleteTodo(todo.id)" ng-class="{is_visible: hover}"></span>
+                            <span class="card-delete" ng-click="deleteTodo(list, todo.id)" ng-class="{is_visible: hover}"></span>
                         </div>
                     </div>
                 </div>

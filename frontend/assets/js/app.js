@@ -83,10 +83,10 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
         }
     };
 
-    $scope.deleteTodo = function(id){
+    $scope.deleteTodo = function(list, id){
         Todos.delete(id);
 
-        $scope.todos = $scope.todos.filter(function(todo) {
+        list.todos = list.todos.filter(function(todo) {
             return todo.id !== id;
         })
     };
@@ -109,7 +109,7 @@ app.controller('cardComposerController', function($scope){
     };
 });
 app.constant('LIST_URL', 'http://localhost:8000/api/lists/');
-app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
+app.constant('TODOS_URL', 'http://localhost:8000/api/todos/');
 
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
@@ -143,7 +143,7 @@ app.directive('ngEnter', function () {
         });
     };
 });
-app.service('Todos', function($http, BASE_URL, LIST_URL){
+app.service('Todos', function($http, TODOS_URL, LIST_URL){
     var Todos = {};
 
     Todos.all = function(id){
@@ -151,15 +151,15 @@ app.service('Todos', function($http, BASE_URL, LIST_URL){
     };
 
     Todos.update = function(updatedTodo){
-        return $http.put(BASE_URL + updatedTodo.id + '/', updatedTodo);
+        return $http.put(TODOS_URL + updatedTodo.id + '/', updatedTodo);
     };
 
     Todos.delete = function(id){
-        return $http.delete(BASE_URL + id + '/');
+        return $http.delete(TODOS_URL + id + '/');
     };
 
     Todos.addOne = function(newTodo){
-        return $http.post(BASE_URL, newTodo)
+        return $http.post(TODOS_URL, newTodo)
     };
 
     return Todos;

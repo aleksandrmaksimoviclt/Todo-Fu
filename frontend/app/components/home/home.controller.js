@@ -78,10 +78,10 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
         }
     };
 
-    $scope.deleteTodo = function(id){
+    $scope.deleteTodo = function(list, id){
         Todos.delete(id);
 
-        $scope.todos = $scope.todos.filter(function(todo) {
+        list.todos = list.todos.filter(function(todo) {
             return todo.id !== id;
         })
     };

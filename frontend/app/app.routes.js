@@ -1,5 +1,5 @@
 app.constant('LIST_URL', 'http://localhost:8000/api/lists/');
-app.constant('BASE_URL', 'http://localhost:8000/api/todos/');
+app.constant('TODOS_URL', 'http://localhost:8000/api/todos/');
 
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
