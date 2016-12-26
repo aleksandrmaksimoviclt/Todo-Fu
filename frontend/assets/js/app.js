@@ -147,7 +147,6 @@ app.service('Todos', function($http, BASE_URL, LIST_URL){
     var Todos = {};
 
     Todos.all = function(id){
-        console.log('We in Todos.all with list id ' + id);
         return $http.get(LIST_URL + id + '/todos/');
     };
 

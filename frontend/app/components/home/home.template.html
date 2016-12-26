@@ -20,14 +20,14 @@
                 </div>
             </div>
             
-            <!-- <div ng-click="showDropdown=!showDropdown" ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
-                <div ng-repeat="todo in completedTodos = (todos | toArray:false | filter:!todo.is_completed)"></div>
+            <div ng-click="showDropdown=!showDropdown" ng-class="{show: completedTodos.length != 0}" class="heading sub-heading hide">
+                <div ng-repeat="todo in completedTodos = (list.todos | toArray:false | filter:!todo.is_completed)"></div>
                 <div class="content"><i ng-class="{showDropdown: showDropdown}" class="fa fa-angle-down drop-down" aria-hidden="true"></i>
                 {{completedTodos.length}} completed {{completedTodos.length == 1 ? "task" : "tasks"}}</div>
             </div>
 
             <div class="card-list" ng-class="{showDropdown: !showDropdown}">
-                <div ng-repeat="todo in todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
+                <div ng-repeat="todo in list.todos | toArray:false | filter: todo.is_completed=true" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-class="{completed: todo.is_completed, is_hovered: hover, is_focused: focus}" ng-dblclick="editTodo($event);" class="card">
                     <div class="card-details">
                         <div class="card-content">
                             <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
@@ -41,14 +41,14 @@
                 <div ng-model="lastCompleted" class="time-stamp">
                     Last completed: {{lastCompleted}}
                 </div>
-            </div> -->
+            </div>
 
             <div ng-controller="cardComposerController">
                 <div ng-class="{hide: !hide}" class="card-list card-composer hide">
                     <div class="card">
                         <div class="card-details">
                             <form id="addTodo" class="newtask" name="Form" ng-submit="addTodo($event)">
-                                <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="newTodo.title" required></textarea>
+                                <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="list.newTodo.title" required></textarea>
                             </form>
                         </div>
                     </div>
