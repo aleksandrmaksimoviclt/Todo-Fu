@@ -47,17 +47,17 @@
                 <div ng-class="{hide: !hide}" class="card-list card-composer hide">
                     <div class="card">
                         <div class="card-details">
-                            <form id="addTodo" class="newtask" name="Form" ng-submit="addTodo($event)">
-                                <textarea id="ttt" class="newtask" autocomplete="off" type="text" name="newTask" ng-model="list.newTodo.title" required></textarea>
+                            <form id="addTodo{{list.id}}" class="newtask" name="Form{{list.id}}" ng-submit="addTodo($event)">
+                                <textarea class="newtask" autocomplete="off" type="text" name="newTask{{list.id}}" ng-model="list.newTodo.title" required></textarea>
                             </form>
                         </div>
                     </div>
                     <div>
-                        <button class="newtask add" form="addTodo" ng-disabled="form.$invalid">Add</button>
+                        <button class="newtask add" form="addTodo{{list.id}}" ng-disabled="form.$invalid">Add</button>
                         <button ng-click="toggleComposer(false)" class="close editor">X</button>
                     </div>
                 </div>
-                <a onclick="setFocus()" ng-click="toggleComposer(true)" ng-class="{hide: hide}" class="open-card-composer" href="#">Add a card...</a>
+                <a ng-click="toggleComposer(true, $event, list)" ng-class="{hide: hide}" class="open-card-composer" href="#">Add a card...</a>
             </div>
         </div>
 

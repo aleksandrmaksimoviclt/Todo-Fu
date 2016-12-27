@@ -3,7 +3,7 @@ var app = angular.module('todofu', [
     'angular-toArrayFilter',
     'ui.router'
 ]);
-app.controller('homeController', function($scope, $state, Lists, Todos){
+app.controller('homeController', function($scope, $state, $window, Lists, Todos){
 
     $scope.newTodo = {};
 
@@ -24,8 +24,8 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
 
             if ($event.status == 201) {
                 $scope.todos.push($event.data);
-                document.Form.newTask.value='';
-                setFocus();
+                // document.Form.newTask.value='';
+                // setFocus();
             } else {
                 console.log('Error');
             }
@@ -57,13 +57,12 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
 
     $scope.stopEditTodo = function($index, $event, todo) {
         angular.element(event.currentTarget).removeAttr('contenteditable');
-        console.log(angular.element(event.currentTarget).removeAttr('contenteditable'));
         titleBeforeEdit  = todo.title;
         todo.title = event.currentTarget.innerText;
         if (todo.title != titleBeforeEdit) {
             Todos.update(todo).then(function($event) {
                 if ($event.status == 200) {
-                    console.log($index);
+                    console.log('Saved succesfully');
                 } else {
                     console.log($event.status);
                 }
@@ -95,17 +94,27 @@ app.controller('homeController', function($scope, $state, Lists, Todos){
         angular.element(event.currentTarget).removeAttr('contenteditable');
         console.log(todo);
     };
-
-    // $scope.toggleCompletedDropdown = function(){
-        
-    // }
 });
 
-app.controller('cardComposerController', function($scope){
+app.controller('cardComposerController', function($scope, $state, $window, Lists, Todos){
     
-    $scope.toggleComposer = function(boolean) {
-        $scope.hide = boolean;
-        setTimeout(setFocus, 1)
+    $scope.toggleComposer = function(boolean, $event, list) {
+
+        if (boolean) {
+
+            name = "addTodo"+list.id;
+            name1 = "newTaks"+list.id;
+            $scope.hide = boolean;
+            elementToFocus = document.getElementById(name);
+            window.setTimeout(function() {
+              elementToFocus[0].focus();
+            }, 100);
+    
+        } else {
+
+            $scope.hide = boolean;
+        
+        }
     };
 });
 app.constant('LIST_URL', 'http://localhost:8000/api/lists/');
