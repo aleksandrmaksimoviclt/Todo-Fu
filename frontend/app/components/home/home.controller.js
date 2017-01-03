@@ -6,13 +6,13 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                         $scope.lists = res.data;
                     });
 
-    $scope.getTodos = function(list){
-        if (typeof list.id != 'undefined') {
-            Todos.all(list.id).then(function(res){
-                list.todos = res.data;
-            });
-        }
-    };
+    // $scope.getTodos = function(list){
+    //     if (typeof list.id != 'undefined') {
+    //         Todos.all(list.id).then(function(res){
+    //             list.todos = res.data;
+    //         });
+    //     }
+    // };
 
     $scope.addTodo = function(list, $event) {
         Todos.addOne($scope.newTodo).then(function($event){

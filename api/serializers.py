@@ -13,19 +13,21 @@ from api.models import Board, Label, List, Todo, User
 #         model = Label
 #         fields = '__all__'
 
-
-class ListSerializer(serializers.ModelSerializer):
-    todos = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = List
-        fields = ('name', 'todos')
-
-
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
         fields = '__all__'
+
+class ListSerializer(serializers.ModelSerializer):
+    # todos = serializers.PrimaryKeyRelatedField(queryset=List.objects.all(), many=True)
+    todos = TodoSerializer(many=True)
+
+    class Meta:
+        model = List
+        fields = ('id', 'name', 'todos')
+
+
+
 
 
 # class UserSerializer(serializers.ModelSerializer):
