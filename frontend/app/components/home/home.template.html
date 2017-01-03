@@ -47,8 +47,8 @@
                 <div ng-class="{hide: !hide}" class="card-list card-composer hide">
                     <div class="card">
                         <div class="card-details">
-                            <form id="addTodo{{list.id}}" class="newtask" name="Form{{list.id}}" ng-submit="addTodo($event)">
-                                <textarea class="newtask" autocomplete="off" type="text" name="newTask{{list.id}}" ng-model="list.newTodo.title" required></textarea>
+                            <form id="addTodo{{list.id}}" class="newtask" name="Form{{list.id}}" ng-submit="addTodo(list, $event)">
+                                <textarea class="newtask" autocomplete="off" type="text" name="newTask{{list.id}}" ng-model="newTodo.title" required></textarea>
                             </form>
                         </div>
                     </div>

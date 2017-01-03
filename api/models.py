@@ -30,7 +30,7 @@ class Todo(models.Model):
     due_date = models.DateTimeField(null=True)
     is_completed = models.BooleanField(default=False)
     label = models.ForeignKey('Label', null=True)
-    list = models.ForeignKey('List', null=True)
+    list = models.ForeignKey('List', related_name='todos', on_delete=models.CASCADE, null=True)
     title = models.TextField(null=True)
 
     def __str__(self):

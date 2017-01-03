@@ -264,6 +264,44 @@ body {
     opacity: 1;
   }
 }
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+textarea,
+textarea:focus {
+  font-family: 'Montserrat', sans-serif;
+  background: 0 0;
+  border: none;
+  height: auto;
+  height: 54px;
+  margin-bottom: 4px;
+  max-height: 162px;
+  min-height: 54px;
+  overflow-y: auto;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  resize: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 300;
+  color: #4d4d4d;
+}
+input[type="checkbox"] {
+  margin: 0px;
+  margin-top: 2px;
+  height: 12px;
+  width: 12px;
+  float: left;
+  margin-right: 6px;
+}
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -2600,44 +2638,6 @@ body {
   margin: 0;
   overflow: visible;
   clip: auto;
-}
-.hide {
-  display: none !important;
-}
-.show {
-  display: block !important;
-}
-textarea,
-textarea:focus {
-  font-family: 'Montserrat', sans-serif;
-  background: 0 0;
-  border: none;
-  height: auto;
-  height: 54px;
-  margin-bottom: 4px;
-  max-height: 162px;
-  min-height: 54px;
-  overflow-y: auto;
-  padding: 0;
-  width: 100%;
-  overflow: hidden;
-  resize: none;
-  overflow: auto;
-  outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  font-size: 14px;
-  font-weight: 300;
-  color: #4d4d4d;
-}
-input[type="checkbox"] {
-  margin: 0px;
-  margin-top: 2px;
-  height: 12px;
-  width: 12px;
-  float: left;
-  margin-right: 6px;
 }
 @font-face {
   font-family: 'montserrat';

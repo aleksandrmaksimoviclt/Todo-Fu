@@ -19,13 +19,12 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
         }
     };
 
-    $scope.addTodo = function($event) {
+    $scope.addTodo = function(list, $event) {
         Todos.addOne($scope.newTodo).then(function($event){
 
             if ($event.status == 201) {
-                $scope.todos.push($event.data);
-                // document.Form.newTask.value='';
-                // setFocus();
+                console.log($event.data);
+                list.todos.push($event.data);
             } else {
                 console.log('Error');
             }
@@ -92,7 +91,6 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
 
     $scope.saveTodo = function($event, todo) {
         angular.element(event.currentTarget).removeAttr('contenteditable');
-        console.log(todo);
     };
 });
 
@@ -108,7 +106,7 @@ app.controller('cardComposerController', function($scope, $state, $window, Lists
             elementToFocus = document.getElementById(name);
             window.setTimeout(function() {
               elementToFocus[0].focus();
-            }, 100);
+            }, 0);
     
         } else {
 

@@ -15,9 +15,11 @@ from api.models import Board, Label, List, Todo, User
 
 
 class ListSerializer(serializers.ModelSerializer):
+    todos = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = List
-        fields = '__all__'
+        fields = ('name', 'todos')
 
 
 class TodoSerializer(serializers.ModelSerializer):
