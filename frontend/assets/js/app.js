@@ -11,14 +11,6 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                         $scope.lists = res.data;
                     });
 
-    // $scope.getTodos = function(list){
-    //     if (typeof list.id != 'undefined') {
-    //         Todos.all(list.id).then(function(res){
-    //             list.todos = res.data;
-    //         });
-    //     }
-    // };
-
     $scope.addTodo = function(list, $event) {
         Todos.addOne($scope.newTodo).then(function($event){
 
@@ -54,12 +46,13 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
         }
     }
 
-    $scope.stopEditTodo = function($index, $event, todo) {
+    $scope.stopEditTodo = function($index, $event, list, todo) {
         angular.element(event.currentTarget).removeAttr('contenteditable');
         titleBeforeEdit  = todo.title;
         todo.title = event.currentTarget.innerText;
         if (todo.title != titleBeforeEdit) {
-            Todos.update(todo).then(function($event) {
+            console.log(list);
+            Todos.update(list).then(function($event) {
                 if ($event.status == 200) {
                     console.log('Saved succesfully');
                 } else {
@@ -99,9 +92,7 @@ app.controller('cardComposerController', function($scope, $state, $window, Lists
     $scope.toggleComposer = function(boolean, $event, list) {
 
         if (boolean) {
-
             name = "addTodo"+list.id;
-            name1 = "newTaks"+list.id;
             $scope.hide = boolean;
             elementToFocus = document.getElementById(name);
             window.setTimeout(function() {
@@ -109,9 +100,7 @@ app.controller('cardComposerController', function($scope, $state, $window, Lists
             }, 0);
     
         } else {
-
             $scope.hide = boolean;
-        
         }
     };
 });
@@ -156,9 +145,9 @@ app.service('Todos', function($http, TODOS_URL, LIST_URL){
     Todos.all = function(id){
         return $http.get(LIST_URL + id + '/todos/');
     };
-
-    Todos.update = function(updatedTodo){
-        return $http.put(TODOS_URL + updatedTodo.id + '/', updatedTodo);
+    
+    Todos.update = function(list){
+        return $http.put(LIST_URL + list.id + '/', list);
     };
 
     Todos.delete = function(id){

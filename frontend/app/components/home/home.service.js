@@ -4,9 +4,9 @@ app.service('Todos', function($http, TODOS_URL, LIST_URL){
     Todos.all = function(id){
         return $http.get(LIST_URL + id + '/todos/');
     };
-
-    Todos.update = function(updatedTodo){
-        return $http.put(TODOS_URL + updatedTodo.id + '/', updatedTodo);
+    
+    Todos.update = function(list){
+        return $http.put(LIST_URL + list.id + '/', list);
     };
 
     Todos.delete = function(id){
