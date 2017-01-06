@@ -7,14 +7,13 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                     });
 
     $scope.addTodo = function(newTodo, list) {
-        list.todos.push(newTodo);
-        Todos.update(list).then(function($event){
+        tmp_list = list;
+        tmp_list.todos.push(newTodo);
+        Todos.update(tmp_list).then(function($event){
 
-            if ($event.status == 201) {
-                console.log(list);
-                console.log(newTodo);
-                console.log(list.todos);
-                list.todos.push($event.data);
+            if ($event.status == 200) {
+                tmp_list = $event.data;
+                list.todos.push(tmp_list.todos[tmp_list.todos.length - 1]);
             } else {
                 console.log('Error');
             }
