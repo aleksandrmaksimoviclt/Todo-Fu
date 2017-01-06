@@ -15,6 +15,9 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                 tmp_list = $event.data;
                 list.todos.push(tmp_list.todos[tmp_list.todos.length - 1]);
             } else {
+                //
+                // Show toast notification that error occured
+                //
                 console.log('Error');
             }
         });
@@ -61,15 +64,15 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
         }
     }
 
-    $scope.toggleCompleted = function(todo) {
-        Todos.update(todo);
-        dateNow = new Date();
-        if (todo.is_completed) {
-            lastCompletedDate = new Date();
-            dayDifference = Math.abs(dateNow - lastCompletedDate);
-            console.log(dayDifference);
-            $scope.lastCompleted = lastCompletedDate.getHours() + ":" + lastCompletedDate.getMinutes();
-        }
+    $scope.toggleCompleted = function(list) {
+        Todos.update(list);
+        // dateNow = new Date();
+        // if (todo.is_completed) {
+        //     lastCompletedDate = new Date();
+        //     dayDifference = Math.abs(dateNow - lastCompletedDate);
+        //     console.log(dayDifference);
+        //     $scope.lastCompleted = lastCompletedDate.getHours() + ":" + lastCompletedDate.getMinutes();
+        // }
     };
 
     $scope.deleteTodo = function(list, id){
