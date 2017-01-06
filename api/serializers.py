@@ -46,14 +46,20 @@ class ListSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         todos_data = validated_data.pop('todos')
-        # import pdb; pdb.set_trace()
+        list_data = validated_data
+
         if todos_data:
             for todo_data in todos_data:
-                todo = Todo.objects.filter(id=todo_data['id'])
-                if not todo:
-                    Todo.objects.create(**todo_data)
-                elif todo:
+                
+                try:
+                    todo = Todo.objects.filter(id=todo_data['id'])
+                except Exception:
+                    todo = False
+                
+                if todo:
                     todo.update(**todo_data)
+                elif not todo:
+                    Todo.objects.create(list_id=list_data['id'], **todo_data)
 
         return instance
 

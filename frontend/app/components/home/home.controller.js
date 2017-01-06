@@ -7,21 +7,17 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                     });
 
     $scope.addTodo = function(newTodo, list) {
-        console.log(list);
-        console.log(newTodo);
-        console.log(list.todos);
         list.todos.push(newTodo);
-        console.log(list.todos);
         Todos.update(list).then(function($event){
 
-            // if ($event.status == 201) {
-            console.log(list);
-            console.log(newTodo);
-            console.log(list.todos);
-            // list.todos.push($event.data);
-            // } else {
-            //     console.log('Error');
-            // }
+            if ($event.status == 201) {
+                console.log(list);
+                console.log(newTodo);
+                console.log(list.todos);
+                list.todos.push($event.data);
+            } else {
+                console.log('Error');
+            }
         });
     };
 
