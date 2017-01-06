@@ -11,17 +11,25 @@ app.controller('homeController', function($scope, $state, $window, Lists, Todos)
                         $scope.lists = res.data;
                     });
 
-    $scope.addTodo = function(list, $event) {
-        Todos.addOne($scope.newTodo).then(function($event){
+    $scope.addTodo = function(newTodo, list) {
+        console.log(list);
+        console.log(newTodo);
+        console.log(list.todos);
+        list.todos.push(newTodo);
+        console.log(list.todos);
+        Todos.update(list).then(function($event){
 
-            if ($event.status == 201) {
-                console.log($event.data);
-                list.todos.push($event.data);
-            } else {
-                console.log('Error');
-            }
+            // if ($event.status == 201) {
+            console.log(list);
+            console.log(newTodo);
+            console.log(list.todos);
+            // list.todos.push($event.data);
+            // } else {
+            //     console.log('Error');
+            // }
         });
     };
+
 
     $scope.editTodo = function($event) {
         var text = angular.element(angular.element(event.currentTarget).find('span')[0]);
@@ -103,6 +111,7 @@ app.controller('cardComposerController', function($scope, $state, $window, Lists
             $scope.hide = boolean;
         }
     };
+
 });
 app.constant('LIST_URL', 'http://localhost:8000/api/lists/');
 app.constant('TODOS_URL', 'http://localhost:8000/api/todos/');
@@ -147,15 +156,15 @@ app.service('Todos', function($http, TODOS_URL, LIST_URL){
     };
     
     Todos.update = function(list){
-        return $http.put(LIST_URL + list.id + '/', list);
+        return $http.patch(LIST_URL + list.id + '/', list);
     };
 
     Todos.delete = function(id){
         return $http.delete(TODOS_URL + id + '/');
     };
 
-    Todos.addOne = function(newTodo){
-        return $http.post(TODOS_URL, newTodo)
+    Todos.addOne = function(list){
+        return $http.post(LIST_URL + list.id + '/', list);
     };
 
     return Todos;

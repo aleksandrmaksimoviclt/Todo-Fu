@@ -6,15 +6,15 @@ app.service('Todos', function($http, TODOS_URL, LIST_URL){
     };
     
     Todos.update = function(list){
-        return $http.put(LIST_URL + list.id + '/', list);
+        return $http.patch(LIST_URL + list.id + '/', list);
     };
 
     Todos.delete = function(id){
         return $http.delete(TODOS_URL + id + '/');
     };
 
-    Todos.addOne = function(newTodo){
-        return $http.post(TODOS_URL, newTodo)
+    Todos.addOne = function(list){
+        return $http.post(LIST_URL + list.id + '/', list);
     };
 
     return Todos;

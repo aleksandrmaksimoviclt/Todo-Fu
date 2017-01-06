@@ -11,7 +11,7 @@
                     <div class="card-details">
                         <div class="card-content">
                             <input type="checkbox" ng-checked="todo.is_completed" ng-change="toggleCompleted(todo)" ng-model="todo.is_completed">
-                            <span ng-enter="stopEditTodo($index, $event,list, todo); focus = false;"  ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, list, todo); focus = false;" ng-class="{is_hovered: hover}">
+                            <span ng-enter="stopEditTodo($index, $event, list, todo); focus = false;" ng-focus="focus = true" ng-blur="stopEditTodo($index, $event, list, todo); focus = false;" ng-class="{is_hovered: hover}">
                                 {{todo.title}}
                             </span>
                             <span class="card-delete" ng-click="deleteTodo(list, todo.id)" ng-class="{is_visible: hover}"></span>
@@ -47,7 +47,7 @@
                 <div ng-class="{hide: !hide}" class="card-list card-composer hide">
                     <div class="card">
                         <div class="card-details">
-                            <form id="addTodo{{list.id}}" class="newtask" name="Form{{list.id}}" ng-submit="addTodo(list, $event)">
+                            <form id="addTodo{{list.id}}" class="newtask" name="Form{{list.id}}" ng-submit="addTodo(newTodo, list)">
                                 <textarea class="newtask" autocomplete="off" type="text" name="newTask{{list.id}}" ng-model="newTodo.title" required></textarea>
                             </form>
                         </div>

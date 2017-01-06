@@ -21,6 +21,7 @@ class TodoSerializer(serializers.ModelSerializer):
         fields = ('id', 'due_date', 'is_completed', 'label', 'list', 'title')
 
 class ListSerializer(serializers.ModelSerializer):
+    id = serializers.ModelField(model_field=List()._meta.get_field('id'))
     todos = TodoSerializer(many=True, partial=True)
 
 
@@ -28,14 +29,32 @@ class ListSerializer(serializers.ModelSerializer):
         model = List
         fields = ('id', 'name', 'todos')
 
+    # Write a .create() method to accept newly created todos
+    # check if no duplicates are created
+
+    # def create(self, instance, validated_data):
+    #     todos_data = validated_data.pop('todos')
+
+    #     if todos_data:
+    #         for todo_data in todos_data:
+    #             todo = Todo.objects.filter(id=todo_data['id'])
+    #             if not todo:
+    #                 Todo.objects.create(**todo_data)
+
+    #     return instance
+
 
     def update(self, instance, validated_data):
         todos_data = validated_data.pop('todos')
-        
-        # list_name = Album.objects.create(**validated_data)
-        for todo_data in todos_data:
-            todo = Todo.objects.filter(id=todo_data['id'])
-            todo.update(**todo_data)
+        # import pdb; pdb.set_trace()
+        if todos_data:
+            for todo_data in todos_data:
+                todo = Todo.objects.filter(id=todo_data['id'])
+                if not todo:
+                    Todo.objects.create(**todo_data)
+                elif todo:
+                    todo.update(**todo_data)
+
         return instance
 
 
